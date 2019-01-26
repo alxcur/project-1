@@ -18,8 +18,8 @@ Open Weather Map API
 Spotify API
 ```
 ### Tasks
-- [x] UI Design
-- [x] AJAX API design
-- [x] JQuery DOM Manipulation
-- [x] Test cases
-- [x] Sketch out interface design
+- UI Design
+- AJAX API design
+- JQuery DOM Manipulation
+- Test cases
+- Sketch out interface design
