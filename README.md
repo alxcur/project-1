@@ -10,7 +10,7 @@ Gerson Cruz
 ### Project Description
 ```
 Creates song playlist based on the current weather
-Capability to like or dislike songs
+Background color changes based on weather
 ```
 ### APIs
 ```
