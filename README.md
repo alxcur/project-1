@@ -1,4 +1,4 @@
-## Project1
+## Project 1
 ## Weather - Restaurant Application
 
 ### Team Members 
