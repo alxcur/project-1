@@ -2,21 +2,21 @@
 ## Weather - Restaurant Application
 
 ### Team Members 
-```python
-Mike Henderson
-Alex Curington
-Gerson Cruz
+```
+> Mike Henderson
+> Alex Curington
+> Gerson Cruz
 ```
 ### Project Description
 ```python
-Search for restaurants and get the weather for that location
-Sketch of final product
-TBD
+Creates song playlist based on the current weather
+Capability to like or dislike songs
+Sketch out interface design - TBD
 ```
 ### APIs
 ```python
-Zomato
-Weather API
+Open Weather Map API
+Spotify API
 ```
 ### Tasks
 ```python
