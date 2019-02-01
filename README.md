@@ -9,8 +9,7 @@ Gerson Cruz
 ```
 ### Project Description
 ```
-Creates song playlist based on the current weather
-Background color changes based on weather
+Accesses playlist based on the zip code entered
 ```
 ### APIs
 ```
