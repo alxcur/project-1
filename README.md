@@ -1,5 +1,5 @@
 ## Project 1
-## Playlist based on Current Weather (name tbd)
+## Playlist based on Current Weather (RAINPLAY)
 
 ### Team Members 
 ```
