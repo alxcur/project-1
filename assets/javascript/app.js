@@ -8,8 +8,8 @@ $(document).ready(function() {
     var weatherApiKey = "5d1cc1876b69aaa35b49428d6c8f441b";
 
     // Spotify API key
-    var spotifyApiKey = "BQBA_1VyXD49FmxW0ZfYvY2hjQ_-zO9haGyhhbSnugnpeahesd9Ydm9K-o4qzg3CXvdzwgQnc39j7i8sgxrdABlubWIb9q_fFyU0FLxFL9gGenjbhePRBY4LAyDyoaDuXNjPMqfw46d4ijm9cUPtwL8-IzBq5hHJeOWblaWPktbl_yb8GJNnUOmZf7PpOS1Zc9Fu2HH3A4UHOb1_YA";   
-
+    var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3HqBGuJDToBkTckS60dAkw7sWP-XpupMrkF5szV0cWvBkiAqqElH-Aeo0-1h5NypnHcdZZXrNxDe_Aqi2mzX9o4k0tiskifRPSQk7I0gFch6U0GF03LQG_Tcmz2o0UxkPmVjv4biSyGbc2s7KNYmurwEwA";     
+    
     // Default play list
     var defaultPlayList = "0e8nNKeq46thd42Z2HrXQc";
 
@@ -50,15 +50,12 @@ $(document).ready(function() {
                 $("#userMsg").text(city + " : " + currentWeather);
                 getPlaylistByWeather(city, currentWeather);
             },
-            error: function(xhr, error){
-                console.log(xhr);
-                console.log(error);          
+            error: function(data){          
                 $("#userMsg").text("No weather results for zipcode " + $("#inputZipCode").val().trim());    
             }  
         });
     };
 
-    // AJAX function to get the playlist based on the weather condition
     function getPlaylistByWeather(city, weatherDescription) {
         $.ajax({ 
             url: "https://api.spotify.com/v1/users/alexcurington/playlists",
@@ -92,7 +89,4 @@ $(document).ready(function() {
             }
         });
     }
-    $("#inputZipCode").val("75211");
-    getWeather("75211");
 });
-
