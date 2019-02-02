@@ -8,8 +8,8 @@ $(document).ready(function() {
     var weatherApiKey = "5d1cc1876b69aaa35b49428d6c8f441b";
 
     // Spotify API key
-    var spotifyApiKey = "BQD1fyZmHwBfpE8X0_ISKygNSfJgXjHx5IFKLaucFnY2eARfpSCVOdZKAhGBs-lUFi32K9-0Z5K9kM8MSojxoTi6uRd8GmxeDL_P5LRFGQRyltIvUPaXM0QDjacdm-I6g_ypEblubvsUMUJBf95lJ58f-dhYXtCyMmlQPJ3odnyTJtE_rpg1NmAw2hP8GeG_a8Uy3llw0eHCsM99PQ";   
-
+var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3HqBGuJDToBkTckS60dAkw7sWP-XpupMrkF5szV0cWvBkiAqqElH-Aeo0-1h5NypnHcdZZXrNxDe_Aqi2mzX9o4k0tiskifRPSQk7I0gFch6U0GF03LQG_Tcmz2o0UxkPmVjv4biSyGbc2s7KNYmurwEwA";   
+    
     // Default play list
     var defaultPlayList = "0e8nNKeq46thd42Z2HrXQc";
 
