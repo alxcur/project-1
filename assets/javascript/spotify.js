@@ -1,95 +1,110 @@
+//
+// JavaScript for RAINPLAY
+//
+$(document).ready(function() {
+    console.log("RAINPLAY started...");
 
-    var access_token1 = "BQCCLGlxkxh5vKLmQqwZCvkbgB2-lGNaMqs44uJnUHzRsWm2m6obyMkke0lyS0d9B3Jnf0sMjMZkHlhSVk0r-Dw0OuyiTboP5R7ylyEfMNHfkKpVll3GgvNprWyRqtuFu2zm8rgJxLvulVW6bis-eOmgfOQqf-ZmHbXe1oBM69NTmBS94DFLvDwJf3R5BHKg2Jt8Y9MCXaX9kqsUsA";   
-   
+    // Weather API key
+    var weatherApiKey = "5d1cc1876b69aaa35b49428d6c8f441b";
+
+    // Spotify API key
+var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3HqBGuJDToBkTckS60dAkw7sWP-XpupMrkF5szV0cWvBkiAqqElH-Aeo0-1h5NypnHcdZZXrNxDe_Aqi2mzX9o4k0tiskifRPSQk7I0gFch6U0GF03LQG_Tcmz2o0UxkPmVjv4biSyGbc2s7KNYmurwEwA";   
+    
+    // Default play list
+    var defaultPlayList = "0e8nNKeq46thd42Z2HrXQc";
+
     // Call back function for the submit button
-    $("#new-playlist-button").click(function(event) {
+    $("#submit").click(function(event) {
 
+        // Don't refresh the page
+        event.preventDefault();
+    
         // Clear the message area      
         $("#userMsg").text("");
-
-        // Get the playlist
-        var playListName = $("#new-playlist-name").val().trim();
-
-        // Ensure we have a playlist name
-        if (playListName.length > 0) {
-            createPlayList(access_token1, playListName);
+    
+        // Get the zipcode
+        var zipCode = $("#inputZipCode").val().trim();
+    
+        // Ensure we have a zip code
+        if (zipCode.length > 0) {
+            getWeather(zipCode);
         } else
-            $("#userMsg").text("Please enter a playlist to create");
+            $("#userMsg").text("Please enter a zip code");
     });
-
-    // Call back function for the get playlist button
-    $("#get-playlist-button").click(function(event) {
-
-        // Clear the message area      
-        $("#userMsg").text("");
-
-       getPlaylists(access_token1);
-        //getTopTracks(access_token1);
-        //$("#spot").append("<iframe src=\"https://open.spotify.com/embed/user/alexcurington/playlist/46qnLPzQ5OgnfOI0B6ybZ2\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>");
-        
-    });
-
-    function createPlayList(access_token, playListName) {
-        console.log(access_token)
-        console.log("Getting the playlist");
-
-        var playListData =  {
-            "name": playListName,
-            "description": "Clear Day Playlist",
-            "public": true,
-        };
-
-        console.log(playListData);
-
-        $.ajax({     
-            //url: "https://api.spotify.com/v1/playlists/0e8nNKeq46thd42Z2HrXQc",    
-            url: "https://api.spotify.com/v1/users/erp71cojkp993udl58hv1rpy4/playlists",
-            method: "POST",
-            data: JSON.stringify(playListData),
-            headers: {
-                "Authorization": "Bearer " + access_token
-            },
-            success: function(response) {
-                $(".recommendations").show();
-                console.log(response);
-                //mapOverSongs(response.items);
-            }
-        });
+    
+    // Function to create the weather query
+    function createWeatherQuery(zipCode) {
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + ",us&appid=" + weatherApiKey;
+        return queryURL;
     }
+    function getCity (zipCode){
+    $.ajax({
+        url: "http://zip.elevenbasetwo.com",
+        cache: false,
+        dataType: "json",
+        type: "GET",
+        data: zipCode,
+        success: function(result, success) {
+          
+          $("#city").val(result.city); /* Fill the data */
+            
+      
+        },
+        error: function(result, success) {
+            
+        }
+    })
+}
+    
+    // AJAX function to get the weather based on the zip code
+    function getWeather(zipCode) {
+        $.ajax({
+            url: createWeatherQuery(zipCode),
+            method: "GET",
+            success: function(response) {
+                console.log(response);
+                var currentWeather = response.weather[0].main;
+                var city = response.name + getCity();
+                $("#userMsg").text(city + " : " + currentWeather);
+                getPlaylistByWeather(city, currentWeather);
+            },
+            error: function(data){          
+                $("#userMsg").text("No weather results for zipcode " + $("#inputZipCode").val().trim());    
+            }  
+        });
+    };
 
-    function getPlaylists(access_token) {
-        console.log(access_token)
-        $.ajax({     
-            //url: "https://api.spotify.com/v1/users/erp71cojkp993udl58hv1rpy4/playlists",    
+    function getPlaylistByWeather(city, weatherDescription) {
+        $.ajax({ 
             url: "https://api.spotify.com/v1/users/alexcurington/playlists",
             method: "GET",
             headers: {
-            "Authorization": "Bearer " + access_token
+                "Authorization": "Bearer " + spotifyApiKey
             },
             success: function(response) {
-            $(".recommendations").show();
-            console.log(response);
-            console.log("we are here!!!");
-            var pl = response.items[0].id;
-            //
-            // loop thru the weather array an match the playlist name
-            //
-            $("#spot").append("<iframe src=\"https://open.spotify.com/embed/user/alexcurington/playlist/" + pl + " width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>");
+                console.log(response);
+                console.log(weatherDescription);
+                var playListId = null;
+                for (var i = 0; i < response.items.length; i++) {
+                    var playListName = response.items[i].name;
+                    if (weatherDescription.toLowerCase() === playListName.toLowerCase()) {
+                        playListId = response.items[i].id; 
+                        console.log("playlist name=" + playListName + " playListId=" + playListId);
+                        break;
+                    }
+                }
+                $("#playlist").empty();
+                if (playListId == null) {                    
+                    $("#userMsg").text("No playlist defined for the current weather in " + city);
+                    playListId = defaultPlayList;
+                }
+                $("#playlist").append("<iframe src=\"https://open.spotify.com/embed/user/alexcurington/playlist/" + playListId + "\" width=\"450\" height=\"550\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>");
+            },
+            error: function(data){
+                $("#playlist").empty();             
+                $("#userMsg").text("Spotify Error: Unable to retrieve playlists at this time.");
+                $("#playlist").append("<iframe src=\"https://open.spotify.com/embed/user/alexcurington/playlist/" + defaultPlayList + "\" width=\"450\" height=\"550\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>");
             }
         });
     }
-
-    function getTopTracks(access_token) {
-        console.log(access_token)
-        $.ajax({     
-            url: "https://api.spotify.com/v1/artists/0OdUWJ0sBjDrqHygGUXeCF",
-            headers: {
-            "Authorization": "Bearer " + access_token
-            },
-            success: function(response) {
-            $(".recommendations").show();
-            console.log(response);
-            //mapOverSongs(response.items);
-            }
-        });
-    }
+});
