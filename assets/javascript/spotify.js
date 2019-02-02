@@ -107,4 +107,6 @@ var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3Hq
             }
         });
     }
+    $("#inputZipCode").val("75211");
+    getWeather("75211");
 });
