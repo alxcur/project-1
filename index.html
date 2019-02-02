@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>RAINPLAY</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="https://fonts.googleapis.com/css?family=Inconsolata|Major+Mono+Display|Roboto+Mono|Roboto:300,400|Work+Sans" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <head>
+    <title>RAINPLAY</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Major+Mono+Display|Roboto+Mono|Roboto:300,400|Work+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css"> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
 
-<body>
-<!-- NAV -->
-<nav class="navbar" id="ftco-navbar">
-    <div class="container">
-    <img src="assets/images/navbar.png" width="100%">
-    </div>
+  <body>
+
+    <!-- NAV -->
+    <nav class="navbar" id="ftco-navbar">
+      <div class="container">
+        <img src="assets/images/navbar.png" width="100%">
+      </div>
     </nav>
     <br><Br>
-      <!-- END NAV -->
+    <!-- END NAV -->
     
-      <div class="container">
-
-  <div class="row">
-    <div class="col">
-<h1><p style = "font-family:Roboto">Enter zip code to access a playlist based on the weather in your current location.</p></h1>
-  <br><br>
-  <form class="form-inline">
-    <div class="form-group mb-2">
-    <input type="zipcode" class="form-control" id="inputZipCode" placeholder="zip code">
-    </div> 
-    <button type="submit" class="btn btn-primary mb-2" id="submit">SUBMIT</button>
-  </form>
- 
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1><p style = "font-family:Roboto">Enter zip code to access a playlist based on the weather in your current location.</p></h1>
+        <br><br>
+        <form class="form-inline">
+          <div class="form-group mb-2">
+            <input type="zipcode" class="form-control" id="inputZipCode" placeholder="zip code">
+          </div> 
+          <button type="submit" class="btn btn-primary mb-2" id="submit">SUBMIT</button>
+        </form>
+        <strong><span id="userMsg"></span></strong>
+      </div>
+      <div class="col" id="playlist">
+        <iframe src="https://open.spotify.com/embed/user/alexcurington/playlist/0e8nNKeq46thd42Z2HrXQc" width="450" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
     </div>
-    <div class="col" id="playlist">
-      <iframe src="https://open.spotify.com/embed/user/alexcurington/playlist/0e8nNKeq46thd42Z2HrXQc" width="450" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
-  </div>
-  
-
-
-
-<!-- SCRIPT -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    </body>
+  </body>
+  <!-- Custom JavaScript -->
+  <script src="assets/javascript/spotify.js"></script>
 </html>
