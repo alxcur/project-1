@@ -92,7 +92,7 @@ $(document).ready(function() {
             }
         });
     }
-
     $("#inputZipCode").val("75211");
     getWeather("75211");
 });
+
