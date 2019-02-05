@@ -37,24 +37,6 @@ var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3Hq
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + ",us&appid=" + weatherApiKey;
         return queryURL;
     }
-    function getCity (zipCode){
-    $.ajax({
-        url: "http://zip.elevenbasetwo.com",
-        cache: false,
-        dataType: "json",
-        type: "GET",
-        data: zipCode,
-        success: function(result, success) {
-          
-          $("#city").val(result.city); /* Fill the data */
-            
-      
-        },
-        error: function(result, success) {
-            
-        }
-    })
-}
     
     // AJAX function to get the weather based on the zip code
     function getWeather(zipCode) {
@@ -64,7 +46,7 @@ var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3Hq
             success: function(response) {
                 console.log(response);
                 var currentWeather = response.weather[0].main;
-                var city = response.name + getCity();
+                var city = response.name;
                 $("#userMsg").text(city + " : " + currentWeather);
                 getPlaylistByWeather(city, currentWeather);
             },
@@ -107,4 +89,6 @@ var spotifyApiKey = "BQD6Oq2lvM0uGt6sjTSP5K7hqI97X-sY6yMqwmpjcdO6QDJPxCA1F7Vh3Hq
             }
         });
     }
+    $("#inputZipCode").val("75211");
+    getWeather("75211");
 });
